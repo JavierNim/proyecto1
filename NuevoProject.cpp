@@ -162,7 +162,8 @@ void agregar(Contacto *&agenda, int &numContactos) {
 				case 3:
 					do{//Facebook===========
 						cout<<"Introduzca la cuenta de facebook: ";
-						cin>>nuevo.redes.facebook;//dejo 31 porque son 30 caracteres + el salto de linea
+						cin.ignore();
+    						cin.getline(nuevo.redes.facebook,31);
 						if(strlen(nuevo.redes.facebook)>30){numero=1;}else{numero=0;}
 					}while(limpiar(cin.fail(),6,numero)!=0);
 					break;
@@ -324,15 +325,16 @@ void actualizar(Contacto *agenda, int numContactos){
 					if(strlen(agenda[i].redes.correo)>30){numero=1;}else{numero=0;}
 				}while(limpiar(cin.fail(),4,numero)!=0);
 			
-				do{//Correo===========
+				do{//Instagram===========
 					cout<<"Introduzca la cuenta de instagram: ";
 					cin>>agenda[i].redes.insta;//dejo 31 porque son 30 caracteres + el salto de linea
 					if(strlen(agenda[i].redes.insta)>30){numero=1;}else{numero=0;}
 				}while(limpiar(cin.fail(),5,numero)!=0);
 
-				do{//Correo===========
+				do{//Facebook===========
 					cout<<"Introduzca la cuenta de facebook: ";
-					cin>>agenda[i].redes.facebook;//dejo 31 porque son 30 caracteres + el salto de linea
+					cin.ignore();
+					cin.getline(agenda[i].redes.facebook, 30);
 					if(strlen(agenda[i].redes.facebook)>30){numero=1;}else{numero=0;}
 				}while(limpiar(cin.fail(),6,numero)!=0);	
 		}else{
