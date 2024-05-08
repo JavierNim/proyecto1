@@ -278,7 +278,7 @@ void actualizar(Contacto *agenda, int numContactos){
    	cin.clear();
     system("cls");
 	cout<<"\n======== ACTUALIZAR CONTACTO ========\n"<<endl;//------------------------------------------------------Aqui tambien se puede dividir buscando por nombre y curp
-    cout << "Ingrese nombre o CURP del contacto a actualizar: ";
+    cout << "Ingrese nombre o CURP del contacto a actualizar: "<<endl;
     do{//Nombre o curp===========
  	   	cout<<" Nombre: ";
 		cin.getline(clave,31,'\n');//dejo 31 porque son 30 caracteres + el salto de linea
