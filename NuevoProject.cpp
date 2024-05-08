@@ -93,7 +93,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
     cout<<"\n========= AGREGAR CONTACTO =========\n"<<endl;
   
     if (numContactos>=CONTACTOS) {
-        cout<<"No se pueden agregar más contactos"<< endl<<"La agenda esta llena<<"<<endl;
+        cout<<"No se pueden agregar mÃ¡s contactos"<< endl<<"La agenda esta llena<<"<<endl;
         return;
     }//if
 //==============================================================================================================================================
@@ -179,7 +179,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 			
 			if(opcion<4&&opcion>0){
 				do{
-					cout<<"\n¿Desea agregar otra red social? Si (1)  No(0)\n";
+					cout<<"\nÂ¿Desea agregar otra red social? Si (1)  No(0)\n";
 					cin>>resp;
 					fflush(stdin);
 				}while(!verificarOpc(resp));
