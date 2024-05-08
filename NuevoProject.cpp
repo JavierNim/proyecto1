@@ -1,3 +1,14 @@
+//Proyecto ABC ----- "AGENDA DE CONTACTOS"
+/*
+ =   ID     -   APELLIDOS   -    NOMBRE                                               
+ =ID:206774  Sanchez Vallin    Francisco Javier
+ =ID:246871  Calzada González  Georgina Guadalupe
+ =ID:376905  Andrade Olvera    Dulce Mariana 
+ =ID:453701  Arteaga Delgado   Elia Guadalupe                                                                            
+*/
+//Equipo #9
+
+//Librerías
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
@@ -312,7 +323,7 @@ void actualizar(Contacto *agenda, int numContactos){
 			}//if
 			strcpy(agenda[i].curp,auxChar);
 		//==============================================================================================================================	
-		cout<<"Quiere agregar datos electronicos: ";
+		
 		cin>>opc;
 		limpiar(cin.fail(),0,0);
 		if(opc==1){
@@ -429,13 +440,10 @@ void mostrar(Contacto *agenda, int i){
     cout<< "Nombre: " <<agenda[i].nombre<< endl;
     cout<< "Telefono: " <<agenda[i].tel<< endl;
     cout<< "CURP: " <<agenda[i].curp<< endl;
-    if(strlen(agenda[i].redes.correo)<1){
+    
+	if(agenda[i].tieneRed==true){
         cout<< "Correo electronico: "<< agenda[i].redes.correo << endl;	
-	}//if
-	if(strlen(agenda[i].redes.insta)<1){
         cout<< "Cuenta de Instagram: "<< agenda[i].redes.insta << endl;	
-	}//if
-	if(strlen(agenda[i].redes.facebook)<1){
 		cout<< "Cuenta de Facebook: "<< agenda[i].redes.facebook << endl;	
 	}//if
 }//mostrar
@@ -500,4 +508,3 @@ bool limpiar(bool a,int opc,int estado){
 	
 	return 0;
 }
-
