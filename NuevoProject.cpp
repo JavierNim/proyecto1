@@ -21,7 +21,7 @@ struct Contacto{
     struct RedesSociales redes;
 };//Contacto
 
-void menu();
+void menu(); //buenas tardes senora como se encuentra el dia de hoy
 void agregar(Contacto*&, int &); // en agenda * por que es amperson y & para cambiar la direccion
 void buscar(Contacto*, int);// no se pone agenda por que no es necesario el nombre de la variable
 void actualizar(Contacto*, int);
