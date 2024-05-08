@@ -185,7 +185,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 				}while(!verificarOpc(resp));
 			}//if
 			system("cls");
-		}while(opcion!=4);
+		}while(opcion!=4&&resp==1);
 	}else{
 	strcpy(nuevo.redes.correo,"\0");
 	strcpy(nuevo.redes.insta,"\0");
