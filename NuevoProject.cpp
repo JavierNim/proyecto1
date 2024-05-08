@@ -12,9 +12,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
-
 using namespace std;
-
 #define CONTACTOS 50 //Limite de contactos en la agenda
 
 //Estructuras con variables dinamicas 
@@ -99,7 +97,8 @@ void agregar(Contacto *&agenda, int &numContactos) {
 	char auxChar[50];
 	int resp=0, opcion=0,numero=0;
 	bool validar=false;
-	 
+	bool insta=false, facebook=false, correo=false;
+	
 	system("cls"); 
     cout<<"\n========= AGREGAR CONTACTO =========\n"<<endl;
   
@@ -158,6 +157,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 				system("cls");
 				case 1:
 					do{//Correo===========
+						correo=true;
 						cout<<"Introduzca el correo electronico: ";
 						cin>>nuevo.redes.correo;//dejo 31 porque son 30 caracteres + el salto de linea
 						if(strlen(nuevo.redes.correo)>30){numero=1;}else{numero=0;}
@@ -165,6 +165,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 					break;
 				case 2:
 					do{//Insta===========
+						insta=true;
 						cout<<"Introduzca la cuenta de instagram: ";
 						cin>>nuevo.redes.insta;//dejo 31 porque son 30 caracteres + el salto de linea
 						if(strlen(nuevo.redes.insta)>30){numero=1;}else{numero=0;}
@@ -172,6 +173,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 					break;
 				case 3:
 					do{//Facebook===========
+						facebook=true;
 						cout<<"Introduzca la cuenta de facebook: ";
 						cin.ignore();
     						cin.getline(nuevo.redes.facebook,31);
@@ -204,9 +206,11 @@ void agregar(Contacto *&agenda, int &numContactos) {
 	strcpy(nuevo.redes.facebook,"\0");
 	}//if
 	
-	
-	
-    agenda[numContactos++] = nuevo;
+	if(correo==false){nuevo.redes.correo= new char[30];strcpy(nuevo.redes.correo,"*\0");}
+	if(insta==false){nuevo.redes.insta= new char[30];strcpy(nuevo.redes.insta,"*\0");}	
+	if(facebook==false){nuevo.redes.facebook= new char[30];strcpy(nuevo.redes.facebook,"*\0");}	
+    
+	agenda[numContactos++] = nuevo;
     cout<<"Contacto agregado correctamente"<<endl;
     continuar();
     cin.clear();
@@ -440,10 +444,13 @@ void mostrar(Contacto *agenda, int i){
     cout<< "Nombre: " <<agenda[i].nombre<< endl;
     cout<< "Telefono: " <<agenda[i].tel<< endl;
     cout<< "CURP: " <<agenda[i].curp<< endl;
-    
-	if(agenda[i].tieneRed==true){
+    if(agenda[i].tieneRed==true && agenda[i].redes.correo[0]!='*'){
         cout<< "Correo electronico: "<< agenda[i].redes.correo << endl;	
+	}//if
+	if(agenda[i].tieneRed==true && agenda[i].redes.insta[0]!='*'){
         cout<< "Cuenta de Instagram: "<< agenda[i].redes.insta << endl;	
+	}//if
+	if(agenda[i].tieneRed==true && agenda[i].redes.facebook[0]!='*'){
 		cout<< "Cuenta de Facebook: "<< agenda[i].redes.facebook << endl;	
 	}//if
 }//mostrar
@@ -505,6 +512,5 @@ bool limpiar(bool a,int opc,int estado){
 		cout<<" Ingrese un correo valido"<<endl;
 		return 1;	
 	}
-	
 	return 0;
 }
