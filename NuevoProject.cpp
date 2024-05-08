@@ -1,6 +1,6 @@
 //Proyecto ABC ----- "AGENDA DE CONTACTOS"
 /*
- =   ID     -   APELLIDOS   -    NOMBRE                                               
+ =   ID     -   APELLIDOS   -    NOMBRES                                               
  =ID:206774  Sanchez Vallin    Francisco Javier
  =ID:246871  Calzada González  Georgina Guadalupe
  =ID:376905  Andrade Olvera    Dulce Mariana 
