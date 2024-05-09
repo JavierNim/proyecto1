@@ -41,8 +41,8 @@ void contSin(Contacto*, int);
 void continuar();//Retorna al usuario en caso de que inserte una opcion no valida
 void mostrar(Contacto*, int);
 bool verificarOpc(int);//Se verifica la opcion que de el usuario
-
 bool limpiar(bool,int,int);
+
 int main(){
 	Contacto *agenda = new Contacto[CONTACTOS];//inicializamos la variable dinamica
     //Una estructura con el nombre de agenda de tipo Data
@@ -204,6 +204,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 	strcpy(nuevo.redes.correo,"\0");
 	strcpy(nuevo.redes.insta,"\0");
 	strcpy(nuevo.redes.facebook,"\0");
+	system("cls");
 	}//if
 	
 	if(correo==false){nuevo.redes.correo= new char[30];strcpy(nuevo.redes.correo,"*\0");}
@@ -221,6 +222,12 @@ void buscar(Contacto *agenda, int numContactos){
     bool encontrado = false,validar = false;
 	char clave[50];	
 	int opcion=0,numero=0;	
+	
+	if(numContactos==0){
+    	cout<<"\n La agenda esta vacia\n";
+    	continuar();
+    	return;
+	}//if
 	
 	do{
 		system("cls");
@@ -291,7 +298,14 @@ void actualizar(Contacto *agenda, int numContactos){
     bool opc=false;
    
    	cin.clear();
-    system("cls");
+    
+    if(numContactos==0){
+    	cout<<"\n La agenda esta vacia\n";
+    	continuar();
+    	return;
+	}//if
+	
+	system("cls");
 	cout<<"\n======== ACTUALIZAR CONTACTO ========\n"<<endl;//------------------------------------------------------Aqui tambien se puede dividir buscando por nombre y curp
     cout << "Ingrese nombre o CURP del contacto a actualizar: "<<endl;
     do{//Nombre o curp===========
@@ -378,7 +392,7 @@ void extras(Contacto *agenda, int numContactos){
 		cout<<" Listado de contactos con cuenta de instagram........(1)\n";
 		cout<<" Listado de contactos sin redes sociales.............(2)\n";
 		cout<<" Regresar............................................(3)\n";
-		cout<<" Seleccione una opcion:\n";
+		cout<<" Seleccione una opcion: ";
 		cin>>opcion;
 		if(cin.fail()){cin.clear();cin.ignore(40,'\n');}//ignora la entrada del buffer}//Esto evita que al meter una letra explote================================
 		switch(opcion){
@@ -396,10 +410,17 @@ void extras(Contacto *agenda, int numContactos){
 				break;
 		}//switch
 	}while(opcion!=3);
+	system("cls");
 }//extras
 
 void contInsta(Contacto *agenda, int numContactos){
 	bool contactos=false;//=======controla el mensaje=============
+	
+	if(numContactos==0){
+    	cout<<"\n La agenda esta vacia\n";
+    	continuar();
+    	return;
+	}//if
 	
 	cout<<endl;
     cout<< "===== CONTACTOS CON INSTAGRAM ====="<<endl;
@@ -421,6 +442,12 @@ void contInsta(Contacto *agenda, int numContactos){
 
 void contSin(Contacto *agenda, int numContactos){
 	bool contactos=false;//=======controla el mensaje=============
+	
+	if(numContactos==0){
+    	cout<<"\n La agenda esta vacia\n";
+    	continuar();
+    	return;
+	}//if
 	
 	cout<<endl;
     cout<< "====== CONTACTOS SIN REDES ======"<<endl;
@@ -470,6 +497,7 @@ bool verificarOpc(int opcion){//Se verifica si la opcion ingresada
 		return false;
 	}//else
 }//verificarOpc
+
 bool limpiar(bool a,int opc,int estado){
 	
 	if(a){//esto debuelve un 1 o verdadero si hay un problema con la entrada
