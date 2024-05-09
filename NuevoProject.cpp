@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h> //colores
 using namespace std;
 #define CONTACTOS 50 //Limite de contactos en la agenda
 
@@ -44,6 +45,7 @@ bool verificarOpc(int);//Se verifica la opcion que de el usuario
 bool limpiar(bool,int,int);
 
 int main(){
+	system("color 87");//color de fondo
 	Contacto *agenda = new Contacto[CONTACTOS];//inicializamos la variable dinamica
     //Una estructura con el nombre de agenda de tipo Data
     int num=0, opcion=0;
@@ -69,10 +71,10 @@ int main(){
                 extras(agenda,num);
                 break;
             case 5://SALIR
-                cout<<endl<<"Programa finalizado..."<<endl;
+                printf("\x1b[38;5;74m");cout<<endl<<"Programa finalizado..."<<endl;
                 break;
             default:
-                cout << "\nOpcion no valida"<<endl;
+                printf("\x1b[38;5;74m");cout << "\nOpcion no valida"<<endl;
                 continuar();
                 break;
         }//switch
@@ -83,13 +85,13 @@ int main(){
 }//main
 
 void menu(){
-    cout<<"\n======== AGENDA DE CONTACTOS ========\n"<<endl;
-	cout<<" Agregar nuevo contacto...........(1)\n";
-	cout<<" Buscar contacto..................(2)\n";
-	cout<<" Actualizar contacto..............(3)\n";
-	cout<<" Extras...........................(4)\n";
-	cout<<" Salir............................(5)\n\n";
-    cout<<" Ingrese su opcion: ";
+    printf("\x1b[38;5;222m");cout<<"\n======== AGENDA DE CONTACTOS ========\n"<<endl;
+	printf("\x1b[38;5;231m");cout<<" Agregar nuevo contacto...........(1)\n";
+	printf("\x1b[38;5;231m");cout<<" Buscar contacto..................(2)\n";
+	printf("\x1b[38;5;231m");cout<<" Actualizar contacto..............(3)\n";
+	printf("\x1b[38;5;231m");cout<<" Extras...........................(4)\n";
+	printf("\x1b[38;5;231m");cout<<" Salir............................(5)\n\n";
+   printf("\x1b[38;5;231m"); cout<<" Ingrese su opcion: ";
 }//menu
 
 void agregar(Contacto *&agenda, int &numContactos) {
@@ -100,29 +102,29 @@ void agregar(Contacto *&agenda, int &numContactos) {
 	bool insta=false, facebook=false, correo=false;
 	
 	system("cls"); 
-    cout<<"\n========= AGREGAR CONTACTO =========\n"<<endl;
+    printf("\x1b[38;5;222m");cout<<"\n========= AGREGAR CONTACTO =========\n"<<endl;
   
     if (numContactos>=CONTACTOS) {
-        cout<<"No se pueden agregar más contactos"<< endl<<"La agenda esta llena<<"<<endl;
+        printf("\x1b[38;5;90m");cout<<"No se pueden agregar más contactos"<< endl<<"La agenda esta llena<<"<<endl;
         return;
     }//if
 //==============================================================================================================================================
 	//LLENAR DATOS	
 	do{//Nombre===========
- 	   	cout<<" Nombre: ";
+ 	   	printf("\x1b[38;5;231m");cout<<" Nombre: ";
 		cin.getline(auxChar,31,'\n');//dejo 31 porque son 30 caracteres + el salto de linea
 	}while(limpiar(cin.fail(),1,0)!=0);
 	nuevo.nombre=new char[strlen(auxChar)+1];
 	strcpy(nuevo.nombre,auxChar);
 	
 	do{//telefono========
-		cout<<" Telefono: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR
+		printf("\x1b[38;5;231m");cout<<" Telefono: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR
 	    cin>>nuevo.tel;
 	    if(nuevo.tel<1000000000||nuevo.tel>10000000000){numero=1;}else{numero=0;}
 	}while(limpiar(cin.fail(),2,numero)!=0);    
 	
     do{//curp========================
-    	cout<< " CURP: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR(Resuelto)
+    	printf("\x1b[38;5;231m");cout<< " CURP: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR(Resuelto)
   		cin>>auxChar;
   		if(strlen(auxChar)!=18){numero=1;}else{numero=0;}
 	}while(limpiar(cin.fail(),3,numero)!=0);
@@ -132,8 +134,8 @@ void agregar(Contacto *&agenda, int &numContactos) {
   	
     
 	do{
-		cout<<" Desea agregar alguna red social? Si (1)  No(0)\n";
-		cout<<" Ingrese su opcion: ";
+		printf("\x1b[38;5;231m");cout<<" Desea agregar alguna red social? Si (1)  No(0)\n";
+		printf("\x1b[38;5;231m");cout<<" Ingrese su opcion: ";
 		cin>>nuevo.tieneRed;
 	}while(limpiar(cin.fail(),0,0)!=0);//Se verifica si se eligio un 1 o un 0, si no se repite la pregunta//====================================	
     		nuevo.redes.correo = new char[50];
@@ -146,11 +148,11 @@ void agregar(Contacto *&agenda, int &numContactos) {
 		system("cls");
 		do{
 			cout<<endl;
-			cout<<" Correo electronico...............(1)\n";
-			cout<<" Cuenta de instagram..............(2)\n";
-			cout<<" Cuenta de facebook...............(3)\n";
-			cout<<" Regresar.........................(4)\n";
-			cout<<"\nSeleccione la red social a agregar: ";
+			printf("\x1b[38;5;160m");cout<<" Correo electronico...............(1)\n";
+			printf("\x1b[38;5;211m");cout<<" Cuenta de instagram..............(2)\n";
+			printf("\x1b[38;5;21m");cout<<" Cuenta de facebook...............(3)\n";
+			printf("\x1b[38;5;231m");cout<<" Regresar.........................(4)\n";
+			printf("\x1b[38;5;231m");cout<<"\nSeleccione la red social a agregar: ";
 			cin>>opcion;
 			limpiar(cin.fail(),0,0);
 			switch(opcion){
@@ -158,7 +160,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 				case 1:
 					do{//Correo===========
 						correo=true;
-						cout<<"Introduzca el correo electronico: ";
+						printf("\x1b[38;5;160m");cout<<"Introduzca el correo electronico: ";
 						cin>>nuevo.redes.correo;//dejo 31 porque son 30 caracteres + el salto de linea
 						if(strlen(nuevo.redes.correo)>30){numero=1;}else{numero=0;}
 					}while(limpiar(cin.fail(),4,numero)!=0);
@@ -166,7 +168,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 				case 2:
 					do{//Insta===========
 						insta=true;
-						cout<<"Introduzca la cuenta de instagram: ";
+						printf("\x1b[38;5;211m");cout<<"Introduzca la cuenta de instagram: ";
 						cin>>nuevo.redes.insta;//dejo 31 porque son 30 caracteres + el salto de linea
 						if(strlen(nuevo.redes.insta)>30){numero=1;}else{numero=0;}
 					}while(limpiar(cin.fail(),5,numero)!=0);
@@ -174,7 +176,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 				case 3:
 					do{//Facebook===========
 						facebook=true;
-						cout<<"Introduzca la cuenta de facebook: ";
+						printf("\x1b[38;5;21m");cout<<"Introduzca la cuenta de facebook: ";
 						cin.ignore();
     						cin.getline(nuevo.redes.facebook,31);
 						if(strlen(nuevo.redes.facebook)>30){numero=1;}else{numero=0;}
@@ -184,7 +186,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 					system("cls");
 					break;
 				default:
-					cout<<"Opcion invalida.\n";
+					printf("\x1b[38;5;74m");cout<<"Opcion invalida.\n";
 					continuar();
 					break;
 				system("cls");
@@ -193,7 +195,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 			
 			if(opcion<4&&opcion>0){
 				do{
-					cout<<"\n¿Desea agregar otra red social? Si (1)  No(0)\n";
+					printf("\x1b[38;5;231m");cout<<"\n¿Desea agregar otra red social? Si (1)  No(0)\n";
 					cin>>resp;
 					fflush(stdin);
 				}while(!verificarOpc(resp));
@@ -212,7 +214,7 @@ void agregar(Contacto *&agenda, int &numContactos) {
 	if(facebook==false){nuevo.redes.facebook= new char[30];strcpy(nuevo.redes.facebook,"*\0");}	
     
 	agenda[numContactos++] = nuevo;
-    cout<<"Contacto agregado correctamente"<<endl;
+    printf("\x1b[38;5;231m");cout<<"Contacto agregado correctamente"<<endl;
     continuar();
     cin.clear();
     
@@ -231,11 +233,11 @@ void buscar(Contacto *agenda, int numContactos){
 	
 	do{
 		system("cls");
-		cout<<"\n========== BUSCAR CONTACTO ==========\n"<<endl;
-		cout<<" Nombre............................(1)\n";
-		cout<<" Curp..............................(2)\n";
-		cout<<" Regresar..........................(3)\n\n";
-		cout<<" Seleccione una opcion: ";
+		printf("\x1b[38;5;222m");cout<<"\n========== BUSCAR CONTACTO ==========\n"<<endl;
+		printf("\x1b[38;5;231m");cout<<" Nombre............................(1)\n";
+		printf("\x1b[38;5;231m");cout<<" Curp..............................(2)\n";
+		printf("\x1b[38;5;231m");cout<<" Regresar..........................(3)\n\n";
+		printf("\x1b[38;5;231m");cout<<" Seleccione una opcion: ";
 		fflush(stdin);
 		cin>>opcion;
 		if(cin.fail()){cin.clear();cin.ignore(40,'\n');}//ignora la entrada del buffer}//Esto evita que al meter una letra explote================================
@@ -243,7 +245,7 @@ void buscar(Contacto *agenda, int numContactos){
 			case 1:
 				fflush(stdin);
 					do{//Nombre===========
-						cout<<" Introduzca el nombre a buscar: ";	
+						printf("\x1b[38;5;231m");cout<<" Introduzca el nombre a buscar: ";	
 						cin.getline(clave,31,'\n');//dejo 31 porque son 30 caracteres + el salto de linea
 					}while(limpiar(cin.fail(),1,0)!=0);
 	
@@ -255,12 +257,12 @@ void buscar(Contacto *agenda, int numContactos){
        				}//if 
     			}//for
     			if(!encontrado) {
-        			cout<<" Contacto no encontrado"<<endl;
+        			printf("\x1b[38;5;74m");cout<<" Contacto no encontrado"<<endl;
         			continuar();
     			}//if
 				break;
 			case 2:
-				cout<<" Introduzca la curp a buscar: ";
+				printf("\x1b[38;5;231m");cout<<" Introduzca la curp a buscar: ";
 				 do{//curp========================
   					cin>>clave;
   						if(strlen(clave)!=18){numero=1;}else{numero=0;}
@@ -274,7 +276,7 @@ void buscar(Contacto *agenda, int numContactos){
        				}//if prinicipal
     			}//for
     			if (encontrado==false) {
-        			cout<<" Contacto no encontrado"<<endl;
+        			printf("\x1b[38;5;74m");cout<<" Contacto no encontrado"<<endl;
         			continuar();
     			}//if
     			encontrado=false;
@@ -282,7 +284,7 @@ void buscar(Contacto *agenda, int numContactos){
 			case 3:
 				break;
 			default:
-			cout<<"Opcion invalida.\n";
+			printf("\x1b[38;5;74m");cout<<"Opcion invalida.\n";
 			continuar();
 			break;
 		}//switch
@@ -306,18 +308,18 @@ void actualizar(Contacto *agenda, int numContactos){
 	}//if
 	
 	system("cls");
-	cout<<"\n======== ACTUALIZAR CONTACTO ========\n"<<endl;//------------------------------------------------------Aqui tambien se puede dividir buscando por nombre y curp
-    cout << "Ingrese nombre o CURP del contacto a actualizar: "<<endl;
+	printf("\x1b[38;5;222m");cout<<"\n======== ACTUALIZAR CONTACTO ========\n"<<endl;//------------------------------------------------------Aqui tambien se puede dividir buscando por nombre y curp
+    printf("\x1b[38;5;231m");cout << "Ingrese nombre o CURP del contacto a actualizar: "<<endl;
     do{//Nombre o curp===========
- 	   	cout<<" Nombre: ";
+ 	   	printf("\x1b[38;5;231m");cout<<" Nombre: ";
 		cin.getline(clave,31,'\n');//dejo 31 porque son 30 caracteres + el salto de linea
 	}while(limpiar(cin.fail(),1,0)!=0);
     
     for(int i=0; i<numContactos; i++){
         if(strcmp(clave, agenda[i].nombre)==0||strcmp(clave, agenda[i].curp)==0){
-            cout<<" Ingrese nueva informacion para el contacto: "<<endl;
+            printf("\x1b[38;5;231m");cout<<" Ingrese nueva informacion para el contacto: "<<endl;
             do{//Nombre===========
- 	   			cout<<" Nombre: ";
+ 	   			printf("\x1b[38;5;231m");cout<<" Nombre: ";
 				cin.getline(auxChar,31,'\n');//dejo 31 porque son 30 caracteres + el salto de linea
 			}while(limpiar(cin.fail(),1,0)!=0);
             if(strlen(auxChar)>strlen(agenda[i].nombre)){
@@ -326,13 +328,13 @@ void actualizar(Contacto *agenda, int numContactos){
 			strcpy(agenda[i].nombre,auxChar);
 			
 			do{//telefono========
-				cout<<" Telefono: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR
+				printf("\x1b[38;5;231m");cout<<" Telefono: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR
 	    		cin>>agenda[i].tel;
 	    			if(agenda[i].tel<1000000000||agenda[i].tel>10000000000){numero=1;}else{numero=0;}
 			}while(limpiar(cin.fail(),2,numero)!=0);    
 			
 			do{//curp========================
-    			cout<< " CURP: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR(Resuelto)
+    			printf("\x1b[38;5;231m");cout<< " CURP: ";//-----------------------------------------------------------------AQUI FALTA VALIDAR(Resuelto)
   				cin>>auxChar;
   					if(strlen(auxChar)!=18){numero=1;}else{numero=0;}
 			}while(limpiar(cin.fail(),3,numero)!=0);
@@ -349,19 +351,19 @@ void actualizar(Contacto *agenda, int numContactos){
 				agenda[i].tieneRed=true;
 			}
 				do{//Correo===========
-					cout<<"Introduzca el correo electronico: ";
+					printf("\x1b[38;5;160m");cout<<"Introduzca el correo electronico: ";
 					cin>>agenda[i].redes.correo;//dejo 31 porque son 30 caracteres + el salto de linea
 					if(strlen(agenda[i].redes.correo)>30){numero=1;}else{numero=0;}
 				}while(limpiar(cin.fail(),4,numero)!=0);
 			
 				do{//Instagram===========
-					cout<<"Introduzca la cuenta de instagram: ";
+					printf("\x1b[38;5;211m");cout<<"Introduzca la cuenta de instagram: ";
 					cin>>agenda[i].redes.insta;//dejo 31 porque son 30 caracteres + el salto de linea
 					if(strlen(agenda[i].redes.insta)>30){numero=1;}else{numero=0;}
 				}while(limpiar(cin.fail(),5,numero)!=0);
 
 				do{//Facebook===========
-					cout<<"Introduzca la cuenta de facebook: ";
+					printf("\x1b[38;5;21m");cout<<"Introduzca la cuenta de facebook: ";
 					cin.ignore();
 					cin.getline(agenda[i].redes.facebook, 30);
 					if(strlen(agenda[i].redes.facebook)>30){numero=1;}else{numero=0;}
@@ -370,10 +372,10 @@ void actualizar(Contacto *agenda, int numContactos){
 			continue;
 		}
 		//==============================================================================================================================	
-            cout<<"Contacto actualizado correctamente"<<endl;
+            printf("\x1b[38;5;231m");cout<<"Contacto actualizado correctamente"<<endl;
     		continuar();
         }else{
-        	cout<<"Contacto no encontrado"<<endl;
+        	printf("\x1b[38;5;74m");cout<<"Contacto no encontrado"<<endl;
 			continuar();
 		}//else
 		
@@ -388,11 +390,11 @@ void extras(Contacto *agenda, int numContactos){
 	do{
 		fflush(stdin);
 		system("cls");
-		cout<<"\n============== EXTRAS ==============\n"<<endl;
-		cout<<" Listado de contactos con cuenta de instagram........(1)\n";
-		cout<<" Listado de contactos sin redes sociales.............(2)\n";
-		cout<<" Regresar............................................(3)\n";
-		cout<<" Seleccione una opcion: ";
+		printf("\x1b[38;5;222m");cout<<"\n============== EXTRAS ==============\n"<<endl;
+		printf("\x1b[38;5;231m");cout<<" Listado de contactos con cuenta de instagram........(1)\n";
+		printf("\x1b[38;5;231m");cout<<" Listado de contactos sin redes sociales.............(2)\n";
+		printf("\x1b[38;5;231m");cout<<" Regresar............................................(3)\n";
+		printf("\x1b[38;5;231m");cout<<" Seleccione una opcion: ";
 		cin>>opcion;
 		if(cin.fail()){cin.clear();cin.ignore(40,'\n');}//ignora la entrada del buffer}//Esto evita que al meter una letra explote================================
 		switch(opcion){
@@ -405,7 +407,7 @@ void extras(Contacto *agenda, int numContactos){
 			case 3://REGRESAR
 				break;
 			default:
-				cout<<"Opcion invalida.\n";
+				printf("\x1b[38;5;74m");cout<<"Opcion invalida.\n";
 				continuar();
 				break;
 		}//switch
@@ -423,18 +425,18 @@ void contInsta(Contacto *agenda, int numContactos){
 	}//if
 	
 	cout<<endl;
-    cout<< "===== CONTACTOS CON INSTAGRAM ====="<<endl;
+    printf("\x1b[38;5;222m");cout<< "===== CONTACTOS CON INSTAGRAM ====="<<endl;
     for(int i=0; i<numContactos; i++) {
         if (strlen(agenda[i].redes.insta)>1){
         	contactos=true;
-			cout<< "Nombre: "<<agenda[i].nombre<<endl;
-			cout<< "Instagram : @"<<agenda[i].redes.insta<<endl;
+			printf("\x1b[38;5;231m");cout<< "Nombre: "<<agenda[i].nombre<<endl;
+			printf("\x1b[38;5;211m");cout<< "Instagram : @"<<agenda[i].redes.insta<<endl;
 			cout<<"----------------------------------"<<endl;
         }//if
     }//for
     //==========mensaje cuando no hay usuarios==================================
     if(contactos==false){
-    	cout<<endl<<"   No Hay usuarios con Instagram"<<endl<<endl;
+    	printf("\x1b[38;5;74m");cout<<endl<<"   No Hay usuarios con Instagram"<<endl<<endl;
 	}
     
     continuar();
@@ -450,35 +452,35 @@ void contSin(Contacto *agenda, int numContactos){
 	}//if
 	
 	cout<<endl;
-    cout<< "====== CONTACTOS SIN REDES ======"<<endl;
+    printf("\x1b[38;5;222m"); cout<< "====== CONTACTOS SIN REDES ======"<<endl;
 	for (int i = 0; i < numContactos; i++) {
         if (agenda[i].tieneRed==false){
 
-    		cout<<endl<< "Nombre: " <<agenda[i].nombre<< endl;
+    		printf("\x1b[38;5;231m");cout<<endl<< "Nombre: " <<agenda[i].nombre<< endl;
     	contactos=true;
         }//if
     }//if
 	//==========mensaje cuando no hay usuarios==================================
     if(contactos==false){
-    	cout<<"No Hay usuarios sin redes"<<endl<<endl;
+    	printf("\x1b[38;5;74m");cout<<"No Hay usuarios sin redes"<<endl<<endl;
 	}
     continuar();
 }//void
 
 void mostrar(Contacto *agenda, int i){
 	cout<<endl;
-    cout<< "Contacto encontrado:"<< endl;
-    cout<< "Nombre: " <<agenda[i].nombre<< endl;
-    cout<< "Telefono: " <<agenda[i].tel<< endl;
-    cout<< "CURP: " <<agenda[i].curp<< endl;
+    printf("\x1b[38;5;184m");cout<< "Contacto encontrado:"<< endl;
+    printf("\x1b[38;5;231m");cout<< "Nombre: " <<agenda[i].nombre<< endl;
+    printf("\x1b[38;5;231m");cout<< "Telefono: " <<agenda[i].tel<< endl;
+    printf("\x1b[38;5;231m");cout<< "CURP: " <<agenda[i].curp<< endl;
     if(agenda[i].tieneRed==true && agenda[i].redes.correo[0]!='*'){
-        cout<< "Correo electronico: "<< agenda[i].redes.correo << endl;	
+        	printf("\x1b[38;5;160m");cout<< "Correo electronico: "<< agenda[i].redes.correo << endl;	
 	}//if
 	if(agenda[i].tieneRed==true && agenda[i].redes.insta[0]!='*'){
-        cout<< "Cuenta de Instagram: "<< agenda[i].redes.insta << endl;	
+        	printf("\x1b[38;5;211m");cout<< "Cuenta de Instagram: "<< agenda[i].redes.insta << endl;	
 	}//if
 	if(agenda[i].tieneRed==true && agenda[i].redes.facebook[0]!='*'){
-		cout<< "Cuenta de Facebook: "<< agenda[i].redes.facebook << endl;	
+		printf("\x1b[38;5;21m");cout<< "Cuenta de Facebook: "<< agenda[i].redes.facebook << endl;	
 	}//if
 }//mostrar
 
@@ -492,7 +494,7 @@ bool verificarOpc(int opcion){//Se verifica si la opcion ingresada
 	if(opcion==0||opcion==1){
 		return true;
 	}else{
-		cout<<"Opcion invalida.\n";
+		printf("\x1b[38;5;74m");cout<<"Opcion invalida.\n";
 		continuar();
 		return false;
 	}//else
@@ -503,22 +505,22 @@ bool limpiar(bool a,int opc,int estado){
 	if(a){//esto debuelve un 1 o verdadero si hay un problema con la entrada
 		switch(opc){
 			case 1:
-				cout<<" Ingrese un nombre con menos de 30 elementos"<<endl;//si no les gusta este mensaje cambiarlo
+				printf("\x1b[38;5;74m");cout<<" Ingrese un nombre con menos de 30 elementos"<<endl;//si no les gusta este mensaje cambiarlo
 				break;
 			case 2:
-				cout<<" Ingrese un numero valido de 10 digitos"<<endl;
+				printf("\x1b[38;5;74m");cout<<" Ingrese un numero valido de 10 digitos"<<endl;
 				break;
 			case 3:
-				cout<<"Ingrese una curp valida de 18 caracteres"<<endl;//si no les gusta este mensaje cambiarlo
+				printf("\x1b[38;5;74m");cout<<"Ingrese una curp valida de 18 caracteres"<<endl;//si no les gusta este mensaje cambiarlo
 				break;
 			case 4:
-				cout<<"Ingrese una correo valido"<<endl;//si no les gusta este mensaje cambiarlo
+				printf("\x1b[38;5;74m");cout<<"Ingrese una correo valido"<<endl;//si no les gusta este mensaje cambiarlo
 				break;
 			case 5:
-				cout<<"Ingrese un usuario de Instagram correcto"<<endl;//si no les gusta este mensaje cambiarlo
+				printf("\x1b[38;5;74m");cout<<"Ingrese un usuario de Instagram correcto"<<endl;//si no les gusta este mensaje cambiarlo
 				break;
 			case 6:
-				cout<<"Ingrese un usuario de Facebook correcto"<<endl;//si no les gusta este mensaje cambiarlo
+				printf("\x1b[38;5;74m");cout<<"Ingrese un usuario de Facebook correcto"<<endl;//si no les gusta este mensaje cambiarlo
 				break;
 			default:
 				break;
@@ -529,15 +531,15 @@ bool limpiar(bool a,int opc,int estado){
 	}
 	
 	if(estado==1&&!a&&opc==2){
-		cout<<" Ingrese un numero valido de 10 digitos"<<endl;	
+		printf("\x1b[38;5;74m");cout<<" Ingrese un numero valido de 10 digitos"<<endl;	
 		return 1;	
 	}
 	if(estado==1&&!a&&opc==3){
-		cout<<" Ingrese una curp valida de 18 caracteres"<<endl;
+		printf("\x1b[38;5;74m");cout<<" Ingrese una curp valida de 18 caracteres"<<endl;
 		return 1;	
 	}
 	if(estado==1&&!a&&opc==4){
-		cout<<" Ingrese un correo valido"<<endl;
+		printf("\x1b[38;5;74m");cout<<" Ingrese un correo valido"<<endl;
 		return 1;	
 	}
 	return 0;
